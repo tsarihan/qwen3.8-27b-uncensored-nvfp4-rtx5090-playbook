@@ -1,0 +1,84 @@
+{
+  "tag": "qwen38-27b-orca",
+  "model": "qwen3.8:27b-orca",
+  "base_url": "http://127.0.0.1:8138/v1",
+  "needles": 5,
+  "results": [
+    {
+      "target": 4096,
+      "prompt_tokens": 4313,
+      "ttft_s": 0.766,
+      "prefill_tps": 5627.8,
+      "completion_tokens": 346,
+      "decode_tps": 61.29,
+      "total_s": 6.41,
+      "needles_found": "5/5",
+      "all_found": true,
+      "per_needle": {
+        "vault authorization code@0.10": true,
+        "emergency bypass phrase@0.30": true,
+        "cold storage locker id@0.50": true,
+        "relay handshake token@0.70": true,
+        "archive retrieval key@0.90": true
+      },
+      "answer_head": "The user wants me to extract all the IMPORTANT FACTs from the text and list them in the format '<label>: <value>', each on its own line, with nothing else.\n\nLet me find all the IMPORTANT FACTs in the text:\n\n1. \"IMPORTANT FACT: the vault authorization code is ARGON-SEVEN-FOUR-ZERO.\"\n2. \"IMPORTANT FAC"
+    },
+    {
+      "target": 32768,
+      "prompt_tokens": 33372,
+      "ttft_s": 4.508,
+      "prefill_tps": 7403.1,
+      "completion_tokens": 619,
+      "decode_tps": 58.99,
+      "total_s": 15.0,
+      "needles_found": "5/5",
+      "all_found": true,
+      "per_needle": {
+        "vault authorization code@0.10": true,
+        "emergency bypass phrase@0.30": true,
+        "cold storage locker id@0.50": true,
+        "relay handshake token@0.70": true,
+        "archive retrieval key@0.90": true
+      },
+      "answer_head": "We need answer user's request. Need list every IMPORTANT FACT stated above, each line exact form '<label>: <value>'. Need identify all. User text has repeated maintenance log with interspersed IMPORTANT FACTs:\n1: \"IMPORTANT FACT: the vault authorization code is ARGON-SEVEN-FOUR-ZERO. Remember it.\"\n2"
+    },
+    {
+      "target": 65536,
+      "prompt_tokens": 66568,
+      "ttft_s": 11.616,
+      "prefill_tps": 5731.0,
+      "completion_tokens": 1000,
+      "decode_tps": 58.8,
+      "total_s": 28.62,
+      "needles_found": "5/5",
+      "all_found": true,
+      "per_needle": {
+        "vault authorization code@0.10": true,
+        "emergency bypass phrase@0.30": true,
+        "cold storage locker id@0.50": true,
+        "relay handshake token@0.70": true,
+        "archive retrieval key@0.90": true
+      },
+      "answer_head": "We need answer user's request. Need list every IMPORTANT FACT stated above in exact form '<label>: <value>'. Need parse the huge repeated text. Need identify all IMPORTANT FACT lines. Let's scan.\n\nUser text:\n\"The maintenance log records... \nIMPORTANT FACT: the vault authorization code is ARGON-SEVEN"
+    },
+    {
+      "target": 122880,
+      "prompt_tokens": 124688,
+      "ttft_s": 29.969,
+      "prefill_tps": 4160.5,
+      "completion_tokens": 1172,
+      "decode_tps": 54.97,
+      "total_s": 51.29,
+      "needles_found": "5/5",
+      "all_found": true,
+      "per_needle": {
+        "vault authorization code@0.10": true,
+        "emergency bypass phrase@0.30": true,
+        "cold storage locker id@0.50": true,
+        "relay handshake token@0.70": true,
+        "archive retrieval key@0.90": true
+      },
+      "answer_head": "We need answer user's request. Need list every IMPORTANT FACT stated above, each line exact '<label>: <value>'. Need identify all IMPORTANT FACTs in huge repeated text. Let's parse.\n\nUser text:\nRepeated maintenance log... Then inserted:\nIMPORTANT FACT: the vault authorization code is ARGON-SEVEN-FOU"
+    }
+  ]
+}

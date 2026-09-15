@@ -1,0 +1,32 @@
+This repository contains original scripts, measurements and documentation.
+
+It does NOT redistribute any upstream source and does NOT redistribute model weights.
+`patches/gbnf_pattern_fix.py` is an original litellm callback module written for this rig;
+it is included so the ordered-ceiling and output-clamp behaviour described in README.md is
+reproducible, not as a redistribution of litellm.
+
+Upstream projects referenced:
+  vLLM                              Apache-2.0   https://github.com/vllm-project/vllm
+  litellm                           MIT          https://github.com/BerriAI/litellm
+  Qwen3.8-27B                       see model card on HuggingFace (Qwen)
+  Qwen3.8-27B-Uncensored-NVFP4      see model card on HuggingFace (orcarouter); abliterated
+                                    per Arditi et al. (2024), "Refusal in Language Models Is
+                                    Mediated by a Single Direction", then quantized to mixed
+                                    NVFP4 + FP8 with llmcompressor
+  mini-swe-agent / SWE-bench Pro    see their respective repositories
+
+The referenced checkpoint is an abliterated (refusal-removed) model. This repository
+documents serving configuration and performance measurement only. It is published to
+support authorized security testing, red-team evaluation and refusal-mechanism research in
+isolated environments, and contains no harmful content, jailbreak material, or capability
+demonstrations. Anyone deploying such a checkpoint is responsible for providing independent
+safety and moderation layers; the publisher's own card states it has no meaningful built-in
+guardrails.
+
+Third-party benchmark figures attributed to Nathan Sapwell (nathan.sapwell.net) are cited,
+not reproduced, and are that author's measurements rather than ours. Where cited they refer
+to the FP8 build of this abliteration, not the NVFP4 checkpoint served here.
+
+Benchmark numbers in this repository were measured on the author's own hardware and are
+reported as measured, including the runs that failed and the measurements that turned out
+to be wrong.
