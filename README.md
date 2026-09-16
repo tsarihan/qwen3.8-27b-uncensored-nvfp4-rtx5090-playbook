@@ -13,6 +13,12 @@ discard a quarter of the context window. Those are documented in full below.
 
 ## Scope and intended use
 
+> **By cloning or using this repository you agree to [`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md).**
+> Authorized research and testing in isolated environments only. GitHub cannot require
+> acceptance before download; the model weights themselves are gated by their publisher
+> and do require it.
+
+
 This checkpoint has had its refusal direction removed. Per the publisher's own card,
 harmful-prompt refusal drops from **64–99%** (base Qwen3.8-27B) to **0–6%**, and the card
 states plainly that it has **no meaningful built-in guardrails**.
