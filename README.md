@@ -34,23 +34,45 @@ independent safety and moderation layer in front of it. The base
 `Qwen/Qwen3.8-27B` is the correct choice for essentially every other purpose, and this
 playbook's serving configuration applies to it almost unchanged.
 
-## Status: incomplete on purpose
+## SWE-bench Pro (40-instance enterprise subset)
 
-Two planned measurements are **not in this repository yet** and will be added:
+**85.0% — 34/40 resolved**, thinking on at `xhigh`, 1 worker, 7h46m wall clock.
+All 40 instances produced a patch: **40/40 Submitted**, zero format errors, zero
+context-window errors, zero timeouts.
 
-* **SWE-bench Pro, 40-instance enterprise subset.** Runs are in progress, at 1 worker, in
-  two arms — thinking on at `xhigh` and thinking off — to isolate what the reasoning trace
-  is worth on agentic coding. Design and the harness traps are documented below; only the
-  scores are missing.
-* **Comparison against the non-abliterated model.** The control is
-  `Qwen3.8-27B-NVFP4` on this same card and the same engine flags, so abliteration is the
-  only variable. It has not been run yet.
+Against the other models measured on this same 40-instance subset:
 
-Until that control lands, **nothing here says what abliteration cost in capability.** The
-numbers below characterize this lane, not the weight edit. The publisher reports capability
-within ±1.3 points of base (MMLU 84.3 → 84.7, GSM8K 90.0 → 88.7) — but for the **FP8**
-build, and the card explicitly says quant-specific numbers for *this* NVFP4 checkpoint
-have not been measured.
+| run | score | resolved |
+|---|---|---|
+| nvidia-mtp1-bf16 | 95.0% | 38/40 |
+| qwen38fn-nvfp4 | 90.0% | 36/40 |
+| qwen38fn-fp8 | 90.0% | 36/40 |
+| nvidia-ctl262k-mtp1 | 90.0% | 36/40 |
+| glm53-zai-30 | 90.0% | 36/40 |
+| **this checkpoint (orca, thinking xhigh)** | **85.0%** | **34/40** |
+| dsv4-think-partial | 83.3% | 20/24 |
+| dsv4-think-max | 82.5% | 33/40 |
+| qwen38-fast2 (base Qwen3.8-27B, llama.cpp Q4_K_M) | 75.0% | 30/40 |
+| dsv4-mxfp4-1m | 55.0% | 22/40 |
+
+**Read the 85.0% vs 75.0% gap carefully.** `qwen38-fast2` is the non-abliterated base
+model on the *same* RTX 5090, but served through llama.cpp as Q4_K_M — not NVFP4 on vLLM.
+That 10-point gap therefore confounds abliteration with quantization *and* runtime, and
+cannot be read as "abliteration helped". What it does support is the weaker claim that
+abliteration has not gutted agentic coding ability.
+
+## Status: what is still missing
+
+* **No non-abliterated control.** Until base `Qwen3.8-27B-NVFP4` is run on this same lane
+  with the same engine flags, nothing here isolates what abliteration cost. `qwen38-fast2`
+  is not that control, for the reason above.
+* **The thinking-off arm was not run.** A paired run with `enable_thinking: false` was
+  designed and cancelled before execution, so this repository says nothing about what the
+  reasoning trace is worth on agentic coding. Mean generation with thinking on measured
+  897.9 tokens/request.
+* The publisher reports capability within ±1.3 points of base (MMLU 84.3 → 84.7,
+  GSM8K 90.0 → 88.7) — but for the **FP8** build, and the card explicitly says
+  quant-specific numbers for *this* NVFP4 checkpoint have not been measured.
 
 ## Headline
 
